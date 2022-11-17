@@ -306,7 +306,7 @@ int main(int argc, char** argv )
 {
 
     int scope,rc;
-    unsigned long int  start_millis,stop_millis;
+    unsigned long int  start_millis,stop_millis,tot_millis;
 
     start_millis=millis();
 
@@ -403,7 +403,8 @@ int main(int argc, char** argv )
       perror("mutex destroy");
 
     stop_millis=millis();
-    printf("Total execution time: %f s\n",(double)(start_millis-stop_millis)/1000);
+    tot_millis = stop_millis - start_millis;
+    printf("Total execution time: %f s\n",(double)(tot_millis)/1000);
     return true;
 }
 
