@@ -1,0 +1,3 @@
+/home/cfbieder/Programs/Video/CMakeFiles/rebuild_cache.dir
+/home/cfbieder/Programs/Video/CMakeFiles/edit_cache.dir
+/home/cfbieder/Programs/Video/CMakeFiles/BufferImage.dir
