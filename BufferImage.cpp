@@ -29,7 +29,7 @@ using namespace std;
 #define TRUE 1
 #define FALSE 0
 
-#define TOTAL_FRAMES 50
+#define TOTAL_FRAMES 10
 #define ITEM_SIZE (HRES*VRES*3)
 #define MAX_BUFFER_SIZE 40
 
@@ -46,6 +46,7 @@ unsigned long long seqCnt;
 int mat_type;
 
 double getTimeMsec(void);
+unsigned int millis ();
 
 
 /*********************************************************
@@ -305,6 +306,9 @@ int main(int argc, char** argv )
 {
 
     int scope,rc;
+    unsigned long int  start_millis,stop_millis;
+
+    start_millis=millis();
 
 
     cpu_set_t threadcpu,allcpuset;
@@ -397,12 +401,22 @@ int main(int argc, char** argv )
 
     if(pthread_mutex_destroy(&buff_mutex) != 0)
       perror("mutex destroy");
+
+    stop_millis=millis();
+    printf("Total execution time: %f s\n",(double)(start_millis-stop_millis)/1000);
     return true;
 }
 
 /*********************************************************
 * Helper Function
 **********************************************************/
+
+unsigned int millis () {
+  struct timespec t ;
+  clock_gettime ( CLOCK_MONOTONIC_RAW , & t ) ; // change CLOCK_MONOTONIC_RAW to CLOCK_MONOTONIC on non linux computers
+  return t.tv_sec * 1000 + ( t.tv_nsec + 500000 ) / 1000000 ;
+}
+
 
 double getTimeMsec(void)
 {
